@@ -1,48 +1,31 @@
-"use client";
-
-import { motion } from "framer-motion";
-
-export default function PrivacyPage() {
+export default function PrivacyPolicyPage() {
   return (
-    <main className="bg-brand-dark text-white min-h-screen pt-32 pb-24 px-6 font-body">
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-        className="max-w-4xl mx-auto"
-      >
-        <h1 className="font-display text-4xl md:text-5xl font-bold mb-10 leading-tight">
-          Privacy Policy
-        </h1>
+    <div className="min-h-screen bg-slate-50 py-20 px-6">
+      <div className="max-w-4xl mx-auto bg-white p-8 md:p-16 rounded-3xl shadow-sm border border-slate-100">
+        <h1 className="text-3xl md:text-5xl font-bold text-slate-900 mb-8">Privacy Policy</h1>
+        
+        <div className="space-y-8 text-lg text-slate-600 leading-relaxed">
+          <section>
+            <h2 className="text-2xl font-bold text-slate-900 mb-4">Introduction</h2>
+            <p>At Devcraft Labs, protecting your privacy is at the core of our operations. This Privacy Policy details how we collect, use, process, and protect your personal information when you use our website or engage our development services.</p>
+          </section>
 
-        <section className="mb-8">
-          <h2 className="font-display text-2xl font-bold mb-4 text-brand-teal">1. Introduction</h2>
-          <p className="text-brand-gray text-lg leading-relaxed">
-            Welcome to Calvexa Home Living. We respect your privacy and are committed to protecting your personal data. This privacy policy will inform you as to how we look after your personal data when you visit our website.
-          </p>
-        </section>
+          <section>
+            <h2 className="text-2xl font-bold text-slate-900 mb-4">Information We Collect</h2>
+            <p>We may collect personal identification information (Name, Email address, Phone number, Company details) when you fill out contact forms or purchase our services. We also collect non-personal identification information automatically, such as browser type, device information, and IP addresses via cookies, to optimize our website`s performance.</p>
+          </section>
 
-        <section className="mb-8">
-          <h2 className="font-display text-2xl font-bold mb-4 text-brand-teal">2. Data We Collect</h2>
-          <p className="text-brand-gray text-lg leading-relaxed">
-            We may collect, use, store, and transfer different kinds of personal data about you, including Identity Data (name, username), Contact Data (billing address, delivery address, email), Financial Data (payment card details), and Transaction Data (details about payments to and from you).
-          </p>
-        </section>
+          <section>
+            <h2 className="text-2xl font-bold text-slate-900 mb-4">How We Use Your Data</h2>
+            <p>The data we collect is used strictly to provide and improve our services, process payments, deliver technical support, and communicate project updates. We may also use your email to send relevant technical newsletters or security updates, which you can opt out of at any time.</p>
+          </section>
 
-        <section className="mb-8">
-          <h2 className="font-display text-2xl font-bold mb-4 text-brand-teal">3. How We Use Your Data</h2>
-          <p className="text-brand-gray text-lg leading-relaxed">
-            We will only use your personal data when the law allows us to. Most commonly, we use your data to process and deliver your order, manage our relationship with you, and improve our website, products, and marketing.
-          </p>
-        </section>
-
-        <section className="mb-8">
-          <h2 className="font-display text-2xl font-bold mb-4 text-brand-teal">4. Data Security</h2>
-          <p className="text-brand-gray text-lg leading-relaxed">
-            We have put in place appropriate security measures to prevent your personal data from being accidentally lost, used, or accessed in an unauthorized way.
-          </p>
-        </section>
-      </motion.div>
-    </main>
+          <section>
+            <h2 className="text-2xl font-bold text-slate-900 mb-4">Data Security</h2>
+            <p>Devcraft Labs employs state-of-the-art data collection, storage, and processing practices, including SSL encryption and secure server hosting, to protect against unauthorized access, alteration, disclosure, or destruction of your personal information and project data.</p>
+          </section>
+        </div>
+      </div>
+    </div>
   );
 }

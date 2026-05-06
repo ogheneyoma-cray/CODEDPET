@@ -1,234 +1,91 @@
-"use client";
-
 import Link from "next/link";
-import { ArrowRight, ChefHat, Sofa, Bed } from "lucide-react";
-import { motion, Variants } from "framer-motion";
-
-const categories = [
-  {
-    icon: <ChefHat size={28} />,
-    title: "Kitchenware",
-    desc: "Cook and dine with elegance.",
-  },
-  {
-    icon: <Sofa size={28} />,
-    title: "Living Room & Decor",
-    desc: "Add character and cozy comforts.",
-  },
-  {
-    icon: <Bed size={28} />,
-    title: "Bed & Bath",
-    desc: "Transform your private spaces into luxurious sanctuaries.",
-  },
-];
-
-const whyChooseUs = [
-  { title: "Premium Quality", desc: "We source only the finest, most durable materials for products built to last." },
-  { title: "Modern Design", desc: "Thoughtfully designed pieces that elevate your interior styling." },
-  { title: "Exceptional Value", desc: "Luxury living essentials without the luxury markup." },
-];
-
-const process = [
-  { step: "1", title: "Browse & Inspire", desc: "Explore our curated collections to find the perfect pieces for your aesthetic." },
-  { step: "2", title: "Secure Checkout", desc: "Order with confidence using our safe, encrypted payment portal." },
-  { step: "3", title: "Fast Delivery", desc: "We pack your items with care and ship them swiftly to your doorstep." },
-  { step: "4", title: "Enjoy Your Space", desc: "Unbox, decorate, and fall in love with your newly refreshed home." },
-];
-
-const fadeInUp: Variants = {
-  initial: { opacity: 0, y: 30 },
-  whileInView: { 
-    opacity: 1, 
-    y: 0,
-    transition: { duration: 0.6, ease: "easeOut" }
-  }
-};
-
-const staggerContainer: Variants = {
-  initial: { opacity: 0 },
-  whileInView: { 
-    opacity: 1,
-    transition: { staggerChildren: 0.2 }
-  }
-};
-
-const staggerItem: Variants = {
-  initial: { opacity: 0, y: 20 },
-  whileInView: { 
-    opacity: 1, 
-    y: 0,
-    transition: { duration: 0.5, ease: "easeOut" }
-  }
-};
+import { ArrowRight } from "lucide-react";
 
 export default function HomePage() {
   return (
-    <main className="bg-brand-dark text-white font-body">
-
-      {/* HERO */}
-      <section className="min-h-screen flex flex-col justify-center items-center text-center px-6 pt-24 relative overflow-hidden">
-        <div className="absolute inset-0 pointer-events-none"
-          style={{ backgroundImage: "radial-gradient(ellipse at center, rgba(201, 169, 97, 0.12) 0%, transparent 70%)" }} />
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="relative z-10 flex flex-col items-center"
-        >
-          <h1 className="font-display text-5xl md:text-7xl font-bold leading-tight mb-6 max-w-4xl">
-            Elevate Your Everyday Living.
+    <div className="flex flex-col min-h-screen">
+      {/* Section 1: Hero */}
+      <section className="bg-slate-900 text-white py-24 md:py-32 px-6">
+        <div className="max-w-5xl mx-auto text-center">
+          <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-6">
+            We Engineer Digital Excellence.
           </h1>
-          <p className="text-brand-gray max-w-2xl text-lg mb-10 leading-relaxed">
-            Discover beautifully crafted, functional household items designed to turn your house into a home you love.
+          <p className="text-lg md:text-xl text-slate-300 mb-10 max-w-3xl mx-auto">
+            Welcome to Devcraft Labs. We build robust, scalable, and beautifully designed software and web applications tailored to your business needs. From high-converting websites to complex SaaS platforms, we turn your boldest ideas into flawless digital realities.
           </p>
-          <Link
-            href="/shop"
-            className="bg-brand-teal text-brand-dark px-8 py-4 font-bold tracking-widest uppercase text-sm hover:bg-brand-teal-light transition-all inline-flex items-center gap-2 rounded-full"
-          >
-            Shop the Collection <ArrowRight size={16} />
+          <Link href="/contact" className="inline-flex items-center justify-center bg-[#00C853] hover:bg-[#00b34a] text-white font-medium py-3 px-8 rounded-full transition-colors">
+            Start Your Project <ArrowRight className="ml-2 w-5 h-5" />
           </Link>
-        </motion.div>
-      </section>
-
-      {/* ABOUT SNIPPET */}
-      <motion.section 
-        initial="initial"
-        whileInView="whileInView"
-        viewport={{ once: true, margin: "-50px" }}
-        variants={fadeInUp}
-        className="max-w-4xl mx-auto px-6 py-24 text-center"
-      >
-        <h2 className="font-display text-4xl md:text-5xl font-bold mb-6">
-          Welcome to Calvexa Home Living
-        </h2>
-        <p className="text-brand-gray text-lg leading-relaxed">
-          We believe that the environment you live in shapes the way you feel. That is why Calvexa is dedicated to curating premium household items that blend modern aesthetics with everyday practicality. From the kitchen where you create memories to the bedroom where you recharge, we bring warmth, style, and quality to every corner of your home.
-        </p>
-      </motion.section>
-
-      {/* CATEGORIES */}
-      <section className="bg-brand-navy/30 py-24 px-6">
-        <div className="max-w-6xl mx-auto">
-          <motion.div 
-            initial="initial"
-            whileInView="whileInView"
-            viewport={{ once: true, margin: "-50px" }}
-            variants={fadeInUp}
-          >
-            <h2 className="font-display text-4xl md:text-5xl font-bold text-center mb-6">
-              Explore Your Home's Potential
-            </h2>
-            <p className="text-brand-gray text-center mb-16 text-lg">
-              Find exactly what you need to refresh your space.
-            </p>
-          </motion.div>
-          <motion.div 
-            variants={staggerContainer}
-            initial="initial"
-            whileInView="whileInView"
-            viewport={{ once: true, margin: "-50px" }}
-            className="grid md:grid-cols-3 gap-6"
-          >
-            {categories.map((c) => (
-              <motion.div
-                variants={staggerItem}
-                key={c.title}
-                className="border border-white/10 p-6 hover:border-brand-teal/50 transition-all group rounded-2xl bg-white/2 hover:bg-white/5"
-              >
-                <div className="text-brand-teal mb-4 group-hover:scale-110 transition-transform">
-                  {c.icon}
-                </div>
-                <h3 className="font-display text-xl font-bold mb-3">{c.title}</h3>
-                <p className="text-brand-gray leading-relaxed text-sm">{c.desc}</p>
-              </motion.div>
-            ))}
-          </motion.div>
         </div>
       </section>
 
-      {/* WHY CHOOSE US */}
-      <section className="max-w-6xl mx-auto px-6 py-24">
-        <motion.h2 
-          initial="initial"
-          whileInView="whileInView"
-          viewport={{ once: true, margin: "-50px" }}
-          variants={fadeInUp}
-          className="font-display text-4xl font-bold text-center mb-16"
-        >
-          The <span className="text-brand-teal">Calvexa Standard</span>
-        </motion.h2>
-        <motion.div 
-          variants={staggerContainer}
-          initial="initial"
-          whileInView="whileInView"
-          viewport={{ once: true, margin: "-50px" }}
-          className="grid md:grid-cols-3 gap-8 text-center"
-        >
-          {whyChooseUs.map((item) => (
-            <motion.div variants={staggerItem} key={item.title} className="flex flex-col items-center gap-4">
-              <h3 className="font-display text-xl font-bold">{item.title}</h3>
-              <p className="text-brand-gray text-sm leading-relaxed">{item.desc}</p>
-            </motion.div>
-          ))}
-        </motion.div>
+      {/* Section 2: About Us */}
+      <section className="py-20 px-6 bg-white text-slate-900">
+        <div className="max-w-5xl mx-auto text-center">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">Precision in Every Pixel. Power in Every Line of Code.</h2>
+          <p className="text-lg text-slate-600 leading-relaxed max-w-4xl mx-auto">
+            Devcraft Labs is a premier software engineering and web development agency. We are a collective of forward-thinking developers, creative designers, and strategic problem-solvers. We don`t just write code; we craft digital ecosystems designed to scale, perform, and drive measurable growth for our clients.
+          </p>
+        </div>
       </section>
 
-      {/* PROCESS */}
-      <section className="bg-brand-navy/30 py-24 px-6">
+      {/* Section 3: Our Services */}
+      <section className="py-20 px-6 bg-slate-50 text-slate-900">
+        <div className="max-w-5xl mx-auto text-center">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">Full-Stack Solutions for Modern Brands</h2>
+          <p className="text-lg text-slate-600 mb-12 max-w-3xl mx-auto">
+            We offer end-to-end development services to propel your business forward. Whether you need a lightning-fast corporate website, a high-performing e-commerce platform, or a custom-built web application from scratch, our team leverages the latest technologies to deliver unparalleled results.
+          </p>
+        </div>
+      </section>
+
+      {/* Section 4: Why Choose Us */}
+      <section className="py-20 px-6 bg-white text-slate-900">
+        <div className="max-w-5xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center">The Devcraft Advantage</h2>
+          <p className="text-lg text-slate-600 text-center max-w-3xl mx-auto mb-12">
+            We build for the future. Unlike off-the-shelf templates, our custom solutions are secure, highly scalable, and optimized for peak performance. We prioritize clean code architecture, intuitive user experiences, and transparent communication, ensuring your digital infrastructure is an asset, not a liability.
+          </p>
+        </div>
+      </section>
+
+      {/* Section 5: Our Process */}
+      <section className="py-20 px-6 bg-slate-900 text-white">
+        <div className="max-w-5xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">How We Build</h2>
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="bg-slate-800 p-8 rounded-2xl">
+              <h3 className="text-xl font-semibold mb-3 flex items-center"><span className="bg-[#00C853] text-white w-8 h-8 rounded-full flex items-center justify-center mr-3 text-sm">1</span> Discovery & Strategy</h3>
+              <p className="text-slate-300">We start by deeply understanding your business goals and technical requirements.</p>
+            </div>
+            <div className="bg-slate-800 p-8 rounded-2xl">
+              <h3 className="text-xl font-semibold mb-3 flex items-center"><span className="bg-[#00C853] text-white w-8 h-8 rounded-full flex items-center justify-center mr-3 text-sm">2</span> Design & Prototyping</h3>
+              <p className="text-slate-300">We create interactive wireframes and stunning UI designs for your approval.</p>
+            </div>
+            <div className="bg-slate-800 p-8 rounded-2xl">
+              <h3 className="text-xl font-semibold mb-3 flex items-center"><span className="bg-[#00C853] text-white w-8 h-8 rounded-full flex items-center justify-center mr-3 text-sm">3</span> Agile Development</h3>
+              <p className="text-slate-300">Our engineers bring the designs to life using clean, modern, and secure code.</p>
+            </div>
+            <div className="bg-slate-800 p-8 rounded-2xl">
+              <h3 className="text-xl font-semibold mb-3 flex items-center"><span className="bg-[#00C853] text-white w-8 h-8 rounded-full flex items-center justify-center mr-3 text-sm">4</span> Testing & Deployment</h3>
+              <p className="text-slate-300">Rigorous QA testing guarantees a bug-free launch and seamless deployment.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Section 6: CTA */}
+      <section className="py-24 px-6 bg-[#00C853] text-slate-900 text-center">
         <div className="max-w-4xl mx-auto">
-          <motion.h2 
-            initial="initial"
-            whileInView="whileInView"
-            viewport={{ once: true, margin: "-50px" }}
-            variants={fadeInUp}
-            className="font-display text-4xl font-bold text-center mb-16"
-          >
-            How Calvexa Works
-          </motion.h2>
-          <motion.div 
-            variants={staggerContainer}
-            initial="initial"
-            whileInView="whileInView"
-            viewport={{ once: true, margin: "-50px" }}
-            className="space-y-8"
-          >
-            {process.map((p) => (
-              <motion.div variants={staggerItem} key={p.step} className="flex gap-8 items-start border-b border-white/10 pb-8">
-                <span className="font-display text-5xl font-bold text-brand-teal/40 shrink-0">
-                  {p.step}
-                </span>
-                <div>
-                  <h3 className="font-display text-2xl font-bold mb-2">{p.title}</h3>
-                  <p className="text-brand-gray leading-relaxed">{p.desc}</p>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
+          <h2 className="text-3xl md:text-5xl font-bold mb-6">Ready to Build Something Extraordinary?</h2>
+          <p className="text-lg md:text-xl text-slate-800 mb-10">
+            The digital landscape is evolving rapidly. Don`t get left behind. Partner with Devcraft Labs today and let`s architect the future of your business together.
+          </p>
+          <Link href="/contact" className="inline-flex items-center justify-center bg-slate-900 text-white hover:bg-slate-800 font-bold py-4 px-8 rounded-full transition-colors text-lg">
+            Schedule a Free Technical Consultation
+          </Link>
         </div>
       </section>
-
-      {/* FINAL CTA */}
-      <motion.section 
-        initial="initial"
-        whileInView="whileInView"
-        viewport={{ once: true, margin: "-50px" }}
-        variants={fadeInUp}
-        className="py-32 px-6 text-center"
-      >
-        <h2 className="font-display text-4xl md:text-6xl font-bold mb-6">
-          Ready to Refresh Your Space?
-        </h2>
-        <p className="text-brand-gray max-w-xl mx-auto mb-10 text-lg">
-          Join thousands of happy homeowners who have transformed their spaces with Calvexa.
-        </p>
-        <Link
-          href="/shop"
-          className="bg-brand-teal text-brand-dark px-10 py-4 uppercase tracking-widest text-sm font-bold hover:bg-brand-teal-light transition-all inline-block rounded-full"
-        >
-          View Best Sellers
-        </Link>
-      </motion.section>
-
-    </main>
+    </div>
   );
 }

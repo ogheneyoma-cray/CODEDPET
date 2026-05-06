@@ -1,24 +1,24 @@
 import type { Metadata } from "next";
-import { Playfair_Display, DM_Sans } from "next/font/google";
+import { Space_Grotesk, Inter } from "next/font/google";
 import "./globals.css";
 
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { CartProvider } from "@/context/CartContext";
 
-const playfair = Playfair_Display({
+const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
-  variable: "--font-playfair",
+  variable: "--font-space-grotesk",
 });
 
-const dmSans = DM_Sans({
+const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-dm-sans",
+  variable: "--font-inter",
 });
 
 export const metadata: Metadata = {
-  title: "Calvexa Home Living | Premium Household Essentials",
-  description: "Discover beautifully crafted, functional household items designed to turn your house into a home you love.",
+  title: "Devcraft Labs | Software Engineering & Web Development",
+  description: "We build robust, scalable, and beautifully designed software and web applications tailored to your business needs.",
 };
 
 export default function RootLayout({
@@ -27,8 +27,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${playfair.variable} ${dmSans.variable}`}>
-      <body className="bg-brand-dark text-white antialiased">
+    <html lang="en" className={`${spaceGrotesk.variable} ${inter.variable}`}>
+      <body className="bg-slate-50 text-slate-900 antialiased font-sans" suppressHydrationWarning>
         <CartProvider>
           <Navbar />
           {children}

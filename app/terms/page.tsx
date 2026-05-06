@@ -1,48 +1,26 @@
-"use client";
-
-import { motion } from "framer-motion";
-
-export default function TermsPage() {
+export default function TermsAndConditionsPage() {
   return (
-    <main className="bg-brand-dark text-white min-h-screen pt-32 pb-24 px-6 font-body">
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-        className="max-w-4xl mx-auto"
-      >
-        <h1 className="font-display text-4xl md:text-5xl font-bold mb-10 leading-tight">
-          Terms and Conditions
-        </h1>
+    <div className="min-h-screen bg-slate-50 py-20 px-6">
+      <div className="max-w-4xl mx-auto bg-white p-8 md:p-16 rounded-3xl shadow-sm border border-slate-100">
+        <h1 className="text-3xl md:text-5xl font-bold text-slate-900 mb-8">Terms and Conditions</h1>
+        
+        <div className="space-y-8 text-lg text-slate-600 leading-relaxed">
+          <section>
+            <h2 className="text-2xl font-bold text-slate-900 mb-4">General Agreement</h2>
+            <p>By accessing the Devcraft Labs website and purchasing our services, you agree to comply with and be bound by the following Terms and Conditions. If you disagree with any part of these terms, please refrain from using our website or services.</p>
+          </section>
 
-        <section className="mb-8">
-          <h2 className="font-display text-2xl font-bold mb-4 text-brand-teal">1. Overview</h2>
-          <p className="text-brand-gray text-lg leading-relaxed">
-            This website is operated by Calvexa Home Living. By visiting our site and/or purchasing something from us, you engage in our "Service" and agree to be bound by the following terms and conditions.
-          </p>
-        </section>
+          <section>
+            <h2 className="text-2xl font-bold text-slate-900 mb-4">Intellectual Property Rights</h2>
+            <p>Upon receipt of full and final payment, Devcraft Labs transfers all copyright and intellectual property rights of the custom-written code, final designs, and compiled software to the client. Devcraft Labs retains the right to use non-confidential project deliverables for portfolio and marketing purposes unless a Non-Disclosure Agreement (NDA) is executed prior to the project.</p>
+          </section>
 
-        <section className="mb-8">
-          <h2 className="font-display text-2xl font-bold mb-4 text-brand-teal">2. Online Store Terms</h2>
-          <p className="text-brand-gray text-lg leading-relaxed">
-            You may not use our products for any illegal or unauthorized purpose nor may you, in the use of the Service, violate any laws in your jurisdiction. A breach or violation of any of the Terms will result in an immediate termination of your Services.
-          </p>
-        </section>
-
-        <section className="mb-8">
-          <h2 className="font-display text-2xl font-bold mb-4 text-brand-teal">3. Products or Services</h2>
-          <p className="text-brand-gray text-lg leading-relaxed">
-            Certain products or services may be available exclusively online through the website. We have made every effort to display as accurately as possible the colors and images of our products. We cannot guarantee that your computer monitor's display of any color will be accurate.
-          </p>
-        </section>
-
-        <section className="mb-8">
-          <h2 className="font-display text-2xl font-bold mb-4 text-brand-teal">4. Limitation of Liability</h2>
-          <p className="text-brand-gray text-lg leading-relaxed">
-            In no case shall Calvexa Home Living, our directors, or employees be liable for any injury, loss, claim, or any direct, indirect, incidental, punitive, or consequential damages of any kind arising from your use of any of the service or any products procured using the service.
-          </p>
-        </section>
-      </motion.div>
-    </main>
+          <section>
+            <h2 className="text-2xl font-bold text-slate-900 mb-4">Client Obligations</h2>
+            <p>The success of development projects relies on timely communication. Clients agree to provide necessary access credentials, brand assets, and feedback in a timely manner. Devcraft Labs is not liable for project delays caused by a lack of client responsiveness.</p>
+          </section>
+        </div>
+      </div>
+    </div>
   );
 }

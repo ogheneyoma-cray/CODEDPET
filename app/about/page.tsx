@@ -1,38 +1,36 @@
-"use client";
-
-import { motion } from "framer-motion";
+import { Code2, Target } from "lucide-react";
 
 export default function AboutPage() {
   return (
-    <main className="bg-brand-dark text-white min-h-screen pt-32 pb-24 px-6 font-body">
-      <motion.div 
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-        className="max-w-3xl mx-auto"
-      >
-        <h1 className="font-display text-5xl md:text-6xl font-bold mb-10 leading-tight">
-          Our Story: Bringing Comfort Home
-        </h1>
-        <p className="text-brand-gray text-lg leading-relaxed mb-8">
-          At Calvexa Home Living, we understand that a home is more than just a physical space; it is your sanctuary, your gathering place, and your personal canvas. Founded on the belief that everyone deserves to live in a beautifully functional environment, Calvexa was born out of a passion for modern interior design and everyday utility.
-        </p>
-        
-        <h2 className="font-display text-3xl font-bold mt-12 mb-6 text-brand-teal">Our Mission</h2>
-        <p className="text-brand-gray text-lg leading-relaxed mb-12">
-          To provide homeowners with accessible, high-quality, and beautifully designed household items that enhance their daily routines and elevate their living spaces.
-        </p>
-        
-        <h2 className="font-display text-3xl font-bold mb-6 text-brand-teal">Our Vision</h2>
-        <p className="text-brand-gray text-lg leading-relaxed mb-12">
-          To be the premier online destination for modern home essentials, recognized for our commitment to quality, aesthetic brilliance, and customer satisfaction. We want the name Calvexa to be synonymous with comfort and style.
-        </p>
-        
-        <h2 className="font-display text-3xl font-bold mb-6 text-brand-teal">What We Stand For</h2>
-        <p className="text-brand-gray text-lg leading-relaxed">
-          We meticulously select each item in our catalog—from our artisan dinnerware to our plush bedding—ensuring it meets our strict standards for durability, sustainability, and design. Welcome to the Calvexa family. Let's make your house feel like home.
-        </p>
-      </motion.div>
-    </main>
+    <div className="min-h-screen bg-slate-50 py-20 px-6">
+      <div className="max-w-4xl mx-auto space-y-16">
+        <div className="text-center">
+          <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">The Devcraft Labs Story</h1>
+          <p className="text-lg text-slate-600 leading-relaxed">
+            Born out of a passion for clean architecture and elegant design, Devcraft Labs was established to bridge the gap between complex software engineering and seamless user experiences. We saw a tech industry cluttered with bloated software and poorly executed websites, and we knew businesses deserved better. Today, we are proud to be the trusted technical partners for startups and established enterprises alike.
+          </p>
+        </div>
+
+        <div className="bg-white p-8 md:p-12 rounded-3xl shadow-sm border border-slate-100">
+          <div className="flex items-center mb-6">
+            <Target className="w-8 h-8 text-[#00C853] mr-4" />
+            <h2 className="text-3xl font-bold text-slate-900">Our Mission & Vision</h2>
+          </div>
+          <p className="text-lg text-slate-600 leading-relaxed">
+            Our mission is to democratize high-performance technology. We believe that every business, regardless of size, deserves digital products that are secure, lightning-fast, and intuitively designed. Our vision is to continue pushing the boundaries of web and software development, setting new industry standards for quality and innovation.
+          </p>
+        </div>
+
+        <div className="bg-slate-900 text-white p-8 md:p-12 rounded-3xl shadow-lg">
+          <div className="flex items-center mb-6">
+            <Code2 className="w-8 h-8 text-[#00C853] mr-4" />
+            <h2 className="text-3xl font-bold">Our Core Tech Stack</h2>
+          </div>
+          <p className="text-lg text-slate-300 leading-relaxed">
+            We are platform-agnostic but highly opinionated about quality. Our engineers specialize in modern, robust frameworks including React, Vue.js, Node.js, Python, and scalable cloud architectures on AWS and Google Cloud. We choose the right tools for your specific challenge, ensuring longevity and technical superiority.
+          </p>
+        </div>
+      </div>
+    </div>
   );
 }
