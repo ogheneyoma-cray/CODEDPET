@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { Menu, X, ShoppingCart } from "lucide-react";
 import { useCart } from "@/context/CartContext";
+import { useCurrency } from "@/context/CurrencyContext";
 import { motion, AnimatePresence } from "framer-motion";
 
 const links = [
@@ -17,6 +18,7 @@ const links = [
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const { totalItems } = useCart();
+  const { currency, setCurrency } = useCurrency();
 
   return (
     <nav className="fixed top-0 w-full z-50 bg-slate-900/95 backdrop-blur-md border-b border-white/10">
@@ -25,10 +27,10 @@ export default function Navbar() {
         {/* LOGO */}
         <Link href="/" className="flex items-center gap-3 group">
           <div className="relative w-10 h-10 flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow rounded-full overflow-hidden">
-            <Image src="/logo.png" alt="Devcraft Labs Logo" fill className="object-cover" />
+            <Image src="/logo.svg" alt="Codedpet Logo" fill className="object-cover" />
           </div>
           <span className="font-display text-xl font-bold tracking-tight bg-linear-to-r from-[#00C853] to-[#00C853]/80 bg-clip-text text-transparent">
-            Devcraft Labs
+            Codedpet
           </span>
         </Link>
 
@@ -38,17 +40,41 @@ export default function Navbar() {
             <Link
               key={l.href}
               href={l.href}
-            className="text-slate-400 hover:text-[#00C853] transition-colors font-sans text-sm tracking-widest uppercase"
+              className="text-slate-400 hover:text-[#00C853] transition-colors font-sans text-sm tracking-widest uppercase"
             >
               {l.label}
             </Link>
           ))}
 
+          {/* Currency Toggle */}
+          <div className="flex items-center bg-slate-800 rounded-full p-1 text-xs font-bold gap-1">
+            <button
+              onClick={() => setCurrency("USD")}
+              className={`px-3 py-1 rounded-full transition-colors ${
+                currency === "USD"
+                  ? "bg-[#00C853] text-slate-900"
+                  : "text-slate-400 hover:text-white"
+              }`}
+            >
+              USD
+            </button>
+            <button
+              onClick={() => setCurrency("NGN")}
+              className={`px-3 py-1 rounded-full transition-colors ${
+                currency === "NGN"
+                  ? "bg-[#00C853] text-slate-900"
+                  : "text-slate-400 hover:text-white"
+              }`}
+            >
+              NGN
+            </button>
+          </div>
+
           {/* Cart Icon */}
-        <Link href="/cart" className="relative text-slate-400 hover:text-[#00C853] transition-colors">
+          <Link href="/cart" className="relative text-slate-400 hover:text-[#00C853] transition-colors">
             <ShoppingCart size={22} />
             {totalItems > 0 && (
-            <span className="absolute -top-2 -right-2 bg-[#00C853] text-slate-900 text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center">
+              <span className="absolute -top-2 -right-2 bg-[#00C853] text-slate-900 text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center">
                 {totalItems}
               </span>
             )}
@@ -56,7 +82,7 @@ export default function Navbar() {
 
           <Link
             href="/contact"
-          className="bg-[#00C853] text-slate-900 px-6 py-2.5 text-sm font-bold tracking-widest uppercase hover:bg-[#00b34a] transition-colors rounded-full"
+            className="bg-[#00C853] text-slate-900 px-6 py-2.5 text-sm font-bold tracking-widest uppercase hover:bg-[#00b34a] transition-colors rounded-full"
           >
             Get in Touch
           </Link>
@@ -64,17 +90,41 @@ export default function Navbar() {
 
         {/* Mobile Toggle */}
         <div className="md:hidden flex items-center gap-4">
-        <Link href="/cart" className="relative text-slate-400">
+          {/* Mobile Currency Toggle */}
+          <div className="flex items-center bg-slate-800 rounded-full p-1 text-xs font-bold gap-1">
+            <button
+              onClick={() => setCurrency("USD")}
+              className={`px-2 py-0.5 rounded-full transition-colors ${
+                currency === "USD"
+                  ? "bg-[#00C853] text-slate-900"
+                  : "text-slate-400"
+              }`}
+            >
+              $
+            </button>
+            <button
+              onClick={() => setCurrency("NGN")}
+              className={`px-2 py-0.5 rounded-full transition-colors ${
+                currency === "NGN"
+                  ? "bg-[#00C853] text-slate-900"
+                  : "text-slate-400"
+              }`}
+            >
+              ₦
+            </button>
+          </div>
+
+          <Link href="/cart" className="relative text-slate-400">
             <ShoppingCart size={22} />
             {totalItems > 0 && (
-            <span className="absolute -top-2 -right-2 bg-[#00C853] text-slate-900 text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center">
+              <span className="absolute -top-2 -right-2 bg-[#00C853] text-slate-900 text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center">
                 {totalItems}
               </span>
             )}
           </Link>
           <button
             onClick={() => setOpen(!open)}
-          className="text-slate-400"
+            className="text-slate-400"
             aria-label="Toggle menu"
           >
             {open ? <X size={24} /> : <Menu size={24} />}
@@ -90,7 +140,7 @@ export default function Navbar() {
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
-          className="md:hidden bg-slate-900 border-t border-white/10 overflow-hidden"
+            className="md:hidden bg-slate-900 border-t border-white/10 overflow-hidden"
           >
             <div className="px-6 py-6 flex flex-col gap-5">
               {links.map((l) => (
@@ -98,7 +148,7 @@ export default function Navbar() {
                   key={l.href}
                   href={l.href}
                   onClick={() => setOpen(false)}
-                className="text-slate-400 hover:text-[#00C853] transition-colors uppercase tracking-widest text-sm font-sans"
+                  className="text-slate-400 hover:text-[#00C853] transition-colors uppercase tracking-widest text-sm font-sans"
                 >
                   {l.label}
                 </Link>

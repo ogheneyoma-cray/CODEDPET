@@ -2,11 +2,12 @@
 
 import React from "react";
 import { useCart } from "@/context/CartContext";
-import { formatPrice } from "@/lib/utils";
+import { useCurrency } from "@/context/CurrencyContext";
 import Link from "next/link";
 
 export default function CartPage() {
   const { cart, removeFromCart, clearCart } = useCart();
+  const { formatPrice } = useCurrency();
 
   const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
@@ -14,7 +15,7 @@ export default function CartPage() {
     return (
       <main className="max-w-3xl mx-auto px-4 py-20 text-center">
         <h1 className="text-4xl font-bold mb-4">Your Cart</h1>
-        <p className="text-white/50 mb-8">You haven't added anything yet.</p>
+        <p className="text-white/50 mb-8">You haven&apos;t added anything yet.</p>
         <Link
           href="/shop"
           className="bg-white text-black font-semibold px-6 py-3 rounded-full hover:bg-white/90 transition"

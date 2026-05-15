@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
+  <!-- Dark background -->
+  <rect width="200" height="200" rx="40" fill="#0f172a"/>
+
+  <!-- Code left bracket -->
+  <path d="M52 52 L28 100 L52 148" stroke="#00C853" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Code right bracket -->
+  <path d="M148 52 L172 100 L148 148" stroke="#00C853" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Paw main pad -->
+  <ellipse cx="100" cy="122" rx="22" ry="18" fill="#00C853"/>
+
+  <!-- Toe pads -->
+  <ellipse cx="76" cy="98" rx="11" ry="13" fill="#00C853" transform="rotate(-20 76 98)"/>
+  <ellipse cx="90" cy="88" rx="11" ry="13" fill="#00C853" transform="rotate(-8 90 88)"/>
+  <ellipse cx="110" cy="88" rx="11" ry="13" fill="#00C853" transform="rotate(8 110 88)"/>
+  <ellipse cx="124" cy="98" rx="11" ry="13" fill="#00C853" transform="rotate(20 124 98)"/>
+</svg>

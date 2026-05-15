@@ -2,7 +2,7 @@
 
 import { useParams } from "next/navigation";
 import { products } from "@/lib/products";
-import { formatPrice } from "@/lib/utils";
+import { useCurrency } from "@/context/CurrencyContext";
 import { useCart } from "@/context/CartContext";
 import Link from "next/link";
 import { ArrowLeft, ShoppingCart, Check } from "lucide-react";
@@ -13,6 +13,7 @@ export default function ProductPage() {
   const productId = params.id as string;
   const product = products.find(p => p.id === productId);
   const { addToCart } = useCart();
+  const { formatPrice } = useCurrency();
   const [isAdded, setIsAdded] = useState(false);
 
   if (!product) {
@@ -20,7 +21,7 @@ export default function ProductPage() {
       <main className="max-w-4xl mx-auto px-4 py-12">
         <div className="text-center">
           <h1 className="text-4xl font-bold mb-4">Product Not Found</h1>
-          <p className="text-white/60 mb-8">The product you`re looking for doesn`t exist.</p>
+          <p className="text-white/60 mb-8">The product you&apos;re looking for doesn&apos;t exist.</p>
           <Link
             href="/shop"
             className="bg-[#00C853] text-slate-900 px-6 py-3 font-semibold rounded-full hover:bg-[#00b34a] transition"
@@ -85,8 +86,8 @@ export default function ProductPage() {
           <button
             onClick={handleAddToCart}
             className={`w-full py-4 font-bold rounded-full transition flex items-center justify-center gap-2 ${
-              isAdded 
-                ? "bg-green-500 text-white hover:bg-green-600" 
+              isAdded
+                ? "bg-green-500 text-white hover:bg-green-600"
                 : "bg-[#00C853] text-slate-900 hover:bg-[#00b34a]"
             }`}
           >

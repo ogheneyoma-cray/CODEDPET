@@ -5,9 +5,9 @@ export default function AboutPage() {
     <div className="min-h-screen bg-slate-50 py-20 px-6">
       <div className="max-w-4xl mx-auto space-y-16">
         <div className="text-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">The Devcraft Labs Story</h1>
+          <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">The Codedpet Story</h1>
           <p className="text-lg text-slate-600 leading-relaxed">
-            Born out of a passion for clean architecture and elegant design, Devcraft Labs was established to bridge the gap between complex software engineering and seamless user experiences. We saw a tech industry cluttered with bloated software and poorly executed websites, and we knew businesses deserved better. Today, we are proud to be the trusted technical partners for startups and established enterprises alike.
+            Born out of a passion for clean architecture and elegant design, Codedpet was established to bridge the gap between complex software engineering and seamless user experiences. We saw a tech industry cluttered with bloated software and poorly executed websites, and we knew businesses deserved better. Today, we are proud to be the trusted technical partners for startups and established enterprises alike.
           </p>
         </div>
 

@@ -11,7 +11,7 @@ export default function HomePage() {
             We Engineer Digital Excellence.
           </h1>
           <p className="text-lg md:text-xl text-slate-300 mb-10 max-w-3xl mx-auto">
-            Welcome to Devcraft Labs. We build robust, scalable, and beautifully designed software and web applications tailored to your business needs. From high-converting websites to complex SaaS platforms, we turn your boldest ideas into flawless digital realities.
+            Welcome to Codedpet. We build robust, scalable, and beautifully designed software and web applications tailored to your business needs. From high-converting websites to complex SaaS platforms, we turn your boldest ideas into flawless digital realities.
           </p>
           <Link href="/contact" className="inline-flex items-center justify-center bg-[#00C853] hover:bg-[#00b34a] text-white font-medium py-3 px-8 rounded-full transition-colors">
             Start Your Project <ArrowRight className="ml-2 w-5 h-5" />
@@ -24,7 +24,7 @@ export default function HomePage() {
         <div className="max-w-5xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">Precision in Every Pixel. Power in Every Line of Code.</h2>
           <p className="text-lg text-slate-600 leading-relaxed max-w-4xl mx-auto">
-            Devcraft Labs is a premier software engineering and web development agency. We are a collective of forward-thinking developers, creative designers, and strategic problem-solvers. We don`t just write code; we craft digital ecosystems designed to scale, perform, and drive measurable growth for our clients.
+            Codedpet is a premier software engineering and web development agency. We are a collective of forward-thinking developers, creative designers, and strategic problem-solvers. We don&apos;t just write code; we craft digital ecosystems designed to scale, perform, and drive measurable growth for our clients.
           </p>
         </div>
       </section>
@@ -42,7 +42,7 @@ export default function HomePage() {
       {/* Section 4: Why Choose Us */}
       <section className="py-20 px-6 bg-white text-slate-900">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center">The Devcraft Advantage</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center">The Codedpet Advantage</h2>
           <p className="text-lg text-slate-600 text-center max-w-3xl mx-auto mb-12">
             We build for the future. Unlike off-the-shelf templates, our custom solutions are secure, highly scalable, and optimized for peak performance. We prioritize clean code architecture, intuitive user experiences, and transparent communication, ensuring your digital infrastructure is an asset, not a liability.
           </p>
@@ -79,7 +79,7 @@ export default function HomePage() {
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl md:text-5xl font-bold mb-6">Ready to Build Something Extraordinary?</h2>
           <p className="text-lg md:text-xl text-slate-800 mb-10">
-            The digital landscape is evolving rapidly. Don`t get left behind. Partner with Devcraft Labs today and let`s architect the future of your business together.
+            The digital landscape is evolving rapidly. Don&apos;t get left behind. Partner with Codedpet today and let&apos;s architect the future of your business together.
           </p>
           <Link href="/contact" className="inline-flex items-center justify-center bg-slate-900 text-white hover:bg-slate-800 font-bold py-4 px-8 rounded-full transition-colors text-lg">
             Schedule a Free Technical Consultation

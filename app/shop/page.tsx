@@ -1,12 +1,13 @@
+"use client";
+
 import React from "react";
 import Link from "next/link";
 import { products } from "@/lib/products";
-
-const formatPrice = (price: number) => {
-  return new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(price);
-};
+import { useCurrency } from "@/context/CurrencyContext";
 
 export default function ShopPage() {
+  const { formatPrice } = useCurrency();
+
   return (
     <main className="max-w-7xl mx-auto px-6 py-20 min-h-screen">
       <h1 className="text-4xl md:text-5xl font-bold mb-12 text-center text-slate-900">Shop Our Services</h1>
