@@ -6,6 +6,7 @@ export type Product = {
   fullDesc: string;
   price: number;
   category: string;
+  image: string;
 };
 
 export const products: Product[] = [
@@ -16,7 +17,8 @@ export const products: Product[] = [
     fullDesc: "Get a blazing-fast, custom-coded landing page tailored to your campaign. Includes responsive design, CRM integration, and basic SEO optimization. Delivered in 5 business days.",
     price: 499.00,
     sku: "DL-LP-001",
-    category: "Web Development"
+    category: "Web Development",
+    image: "/products/landing-page-development.webp",
   },
   {
     id: "DL-CW-002",
@@ -25,7 +27,8 @@ export const products: Product[] = [
     fullDesc: "A complete digital storefront for your business. Includes Home, About, Services, Blog, and Contact pages built on a scalable CMS. Fully responsive and optimized for speed.",
     price: 1499.00,
     sku: "DL-CW-002",
-    category: "Web Development"
+    category: "Web Development",
+    image: "/products/corporate-website.webp",
   },
   {
     id: "DL-EC-003",
@@ -34,7 +37,8 @@ export const products: Product[] = [
     fullDesc: "Launch your online store with confidence. We handle the full WooCommerce setup, payment gateway integration, shipping configuration, and upload your first 25 products.",
     price: 2499.00,
     sku: "DL-EC-003",
-    category: "Web Development"
+    category: "Web Development",
+    image: "/products/woocommerce-store.webp",
   },
   {
     id: "DL-MVP-004",
@@ -43,7 +47,8 @@ export const products: Product[] = [
     fullDesc: "Turn your startup idea into reality. We build a functional, scalable MVP web application using React and Node.js to help you secure funding or test your market.",
     price: 8500.00,
     sku: "DL-MVP-004",
-    category: "Software Dev"
+    category: "Software Dev",
+    image: "/products/web-app-mvp.webp",
   },
   {
     id: "DL-API-005",
@@ -52,7 +57,8 @@ export const products: Product[] = [
     fullDesc: "Automate your workflow by connecting your existing software. We will integrate up to two third-party APIs (e.g., Stripe, Twilio, Salesforce) securely into your current application.",
     price: 850.00,
     sku: "DL-API-005",
-    category: "Software Dev"
+    category: "Software Dev",
+    image: "/products/api-integration.webp",
   },
   {
     id: "DL-UX-006",
@@ -61,7 +67,8 @@ export const products: Product[] = [
     fullDesc: "Give your users an unforgettable experience. Includes wireframing, interactive prototyping, and high-fidelity UI design for up to 15 app screens (Figma delivery).",
     price: 2200.00,
     sku: "DL-UX-006",
-    category: "UI/UX Design"
+    category: "UI/UX Design",
+    image: "/products/mobile-app-uiux.webp",
   },
   {
     id: "DL-PA-007",
@@ -70,7 +77,8 @@ export const products: Product[] = [
     fullDesc: "Is your website running slow? We provide a comprehensive PDF report analyzing your codebase, server response times, and front-end assets, along with an actionable optimization plan.",
     price: 299.00,
     sku: "DL-PA-007",
-    category: "Support & Audits"
+    category: "Support & Audits",
+    image: "/products/performance-audit.webp",
   },
   {
     id: "DL-MT-008",
@@ -79,7 +87,8 @@ export const products: Product[] = [
     fullDesc: "Peace of mind for your digital assets. Includes weekly plugin updates, daily cloud backups, 24/7 uptime monitoring, and up to 2 hours of development support per month.",
     price: 250.00,
     sku: "DL-MT-008",
-    category: "Maintenance"
+    category: "Maintenance",
+    image: "/products/tech-support-basic.webp",
   },
   {
     id: "DL-MT-009",
@@ -88,7 +97,8 @@ export const products: Product[] = [
     fullDesc: "Ideal for growing e-commerce sites and web apps. Includes daily updates, real-time security scanning, database optimization, and up to 10 hours of dedicated development time.",
     price: 850.00,
     sku: "DL-MT-009",
-    category: "Maintenance"
+    category: "Maintenance",
+    image: "/products/tech-support-pro.webp",
   },
   {
     id: "DL-DB-010",
@@ -97,7 +107,8 @@ export const products: Product[] = [
     fullDesc: "Moving to a new server or cloud provider? We ensure a zero-data-loss migration of your SQL or NoSQL databases with minimal downtime and complete security verification.",
     price: 1200.00,
     sku: "DL-DB-010",
-    category: "Software Dev"
+    category: "Software Dev",
+    image: "/products/database-migration.webp",
   },
   {
     id: "DL-SC-011",
@@ -106,7 +117,8 @@ export const products: Product[] = [
     fullDesc: "Plan your software architecture the right way. Consult with our senior engineers to define your tech stack, database schema, and cloud infrastructure before you start coding.",
     price: 450.00,
     sku: "DL-SC-011",
-    category: "Consulting"
+    category: "Consulting",
+    image: "/products/saas-consulting.webp",
   },
   {
     id: "DL-WP-012",
@@ -115,6 +127,7 @@ export const products: Product[] = [
     fullDesc: "Need WordPress to do something out of the box? We will develop a secure, lightweight, custom WordPress plugin strictly tailored to your specific business requirements.",
     price: 1100.00,
     sku: "DL-WP-012",
-    category: "Web Development"
+    category: "Web Development",
+    image: "/products/wordpress-plugin.webp",
   },
 ];

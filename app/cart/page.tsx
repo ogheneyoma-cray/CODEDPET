@@ -4,6 +4,7 @@ import React from "react";
 import { useCart } from "@/context/CartContext";
 import { useCurrency } from "@/context/CurrencyContext";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function CartPage() {
   const { cart, removeFromCart, clearCart } = useCart();
@@ -33,9 +34,14 @@ export default function CartPage() {
       <div className="flex flex-col gap-4">
         {cart.map((item) => (
           <div key={item.id} className="flex items-center justify-between border border-white/10 rounded-2xl p-5 bg-white/5">
-            <div>
-              <h2 className="font-semibold">{item.name}</h2>
-              <p className="text-white/40 text-sm">{item.sku}</p>
+            <div className="flex items-center gap-4">
+              <div className="relative w-20 h-16 shrink-0 rounded-xl overflow-hidden bg-white/5">
+                <Image src={item.image} alt={item.name} fill sizes="80px" className="object-cover" />
+              </div>
+              <div>
+                <h2 className="font-semibold">{item.name}</h2>
+                <p className="text-white/40 text-sm">{item.sku}</p>
+              </div>
             </div>
             <div className="flex items-center gap-6">
               <span className="font-bold">{formatPrice(item.price)}</span>
