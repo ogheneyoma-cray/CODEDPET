@@ -21,8 +21,8 @@ export default function ProductPage() {
     return (
       <main className="max-w-4xl mx-auto px-4 py-12">
         <div className="text-center">
-          <h1 className="text-4xl font-bold mb-4">Product Not Found</h1>
-          <p className="text-white/60 mb-8">The product you&apos;re looking for doesn&apos;t exist.</p>
+          <h1 className="text-4xl font-bold mb-4 text-slate-900">Product Not Found</h1>
+          <p className="text-slate-600 mb-8">The product you&apos;re looking for doesn&apos;t exist.</p>
           <Link
             href="/shop"
             className="bg-[#00C853] text-slate-900 px-6 py-3 font-semibold rounded-full hover:bg-[#00b34a] transition"
@@ -44,7 +44,7 @@ export default function ProductPage() {
     <main className="max-w-4xl mx-auto px-4 py-12">
       <Link
         href="/shop"
-        className="inline-flex items-center gap-2 text-white/60 hover:text-white mb-8 transition"
+        className="inline-flex items-center gap-2 text-slate-500 hover:text-slate-900 mb-8 transition"
       >
         <ArrowLeft size={16} />
         Back to Shop
@@ -52,7 +52,7 @@ export default function ProductPage() {
 
       <div className="grid md:grid-cols-2 gap-12">
         {/* Product Image */}
-        <div className="relative aspect-square rounded-2xl overflow-hidden bg-white/5">
+        <div className="relative aspect-square rounded-2xl overflow-hidden bg-slate-100">
           <Image
             src={product.image}
             alt={product.name}
@@ -66,22 +66,22 @@ export default function ProductPage() {
         {/* Product Details */}
         <div className="space-y-6">
           <div>
-            <span className="text-xs text-[#00C853] uppercase tracking-widest">{product.category}</span>
-            <h1 className="text-3xl font-bold mt-2 mb-4">{product.name}</h1>
-            <p className="text-white/60">{product.shortDesc}</p>
+            <span className="text-xs text-[#00C853] uppercase tracking-widest font-semibold">{product.category}</span>
+            <h1 className="text-3xl font-bold mt-2 mb-4 text-slate-900">{product.name}</h1>
+            <p className="text-slate-600">{product.shortDesc}</p>
           </div>
 
-          <div className="text-4xl font-bold text-[#00C853]">
+          <div className="text-4xl font-bold text-slate-900">
             {formatPrice(product.price)}
           </div>
 
           <div className="space-y-4">
-            <h2 className="text-xl font-semibold">Description</h2>
-            <p className="text-white/80 leading-relaxed">{product.fullDesc}</p>
+            <h2 className="text-xl font-semibold text-slate-900">Description</h2>
+            <p className="text-slate-600 leading-relaxed">{product.fullDesc}</p>
           </div>
 
           <div className="space-y-2">
-            <p className="text-sm text-white/60">
+            <p className="text-sm text-slate-500">
               <span className="font-semibold">SKU:</span> {product.sku}
             </p>
           </div>
