@@ -29,8 +29,8 @@ export default function ContactPage() {
                 <Phone className="w-6 h-6 text-[#00C853] mt-1 mr-4 shrink-0" />
                 <div>
                   <p className="font-medium text-slate-900">Phone</p>
-                  <a href="tel:+2348037113204" className="text-slate-600 hover:text-[#00C853] transition-colors">
-                    +234 803 711 3204
+                  <a href="tel:+2349019632428" className="text-slate-600 hover:text-[#00C853] transition-colors">
+                    09019632428
                   </a>
                 </div>
               </div>
@@ -85,7 +85,7 @@ export default function ContactPage() {
                   type="tel"
                   id="phone"
                   className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-[#00C853] focus:border-transparent outline-none transition-all"
-                  placeholder="+234 800 000 0000"
+                  placeholder="Your phone number"
                 />
               </div>
               <div>

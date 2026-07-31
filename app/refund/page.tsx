@@ -33,7 +33,7 @@ export default function RefundPolicyPage() {
 
           <section>
             <h2 className="text-2xl font-bold text-slate-900 mb-4">Contact Us</h2>
-            <p>For any refund enquiries, please reach out to our team with your order details at <a href="mailto:info@codedpet.com" className="text-[#00C853] hover:underline">info@codedpet.com</a> or call us at <a href="tel:+2348037113204" className="text-[#00C853] hover:underline">+234 803 711 3204</a>. We are committed to resolving all issues promptly and professionally.</p>
+            <p>For any refund enquiries, please reach out to our team with your order details at <a href="mailto:info@codedpet.com" className="text-[#00C853] hover:underline">info@codedpet.com</a> or call us at <a href="tel:+2349019632428" className="text-[#00C853] hover:underline">09019632428</a>. We are committed to resolving all issues promptly and professionally.</p>
           </section>
         </div>
       </div>

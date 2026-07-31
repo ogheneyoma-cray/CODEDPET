@@ -28,7 +28,7 @@ export default function ShippingPolicyPage() {
 
           <section>
             <h2 className="text-2xl font-bold text-slate-900 mb-4">Post-Delivery Support</h2>
-            <p>Upon final delivery of your project, our team is available to assist with any questions regarding setup, access, or usage of the delivered materials. Standard post-delivery support is included for 7 days following the date of final delivery. For ongoing technical support, maintenance, and updates, we offer dedicated Monthly Tech Support packages available in our shop. If you have any questions about delivery or require an expedited timeline, please contact us at <a href="mailto:info@codedpet.com" className="text-[#00C853] hover:underline">info@codedpet.com</a> or call <a href="tel:+2348037113204" className="text-[#00C853] hover:underline">+234 803 711 3204</a> before placing your order.</p>
+            <p>Upon final delivery of your project, our team is available to assist with any questions regarding setup, access, or usage of the delivered materials. Standard post-delivery support is included for 7 days following the date of final delivery. For ongoing technical support, maintenance, and updates, we offer dedicated Monthly Tech Support packages available in our shop. If you have any questions about delivery or require an expedited timeline, please contact us at <a href="mailto:info@codedpet.com" className="text-[#00C853] hover:underline">info@codedpet.com</a> or call <a href="tel:+2349019632428" className="text-[#00C853] hover:underline">09019632428</a> before placing your order.</p>
           </section>
         </div>
       </div>
