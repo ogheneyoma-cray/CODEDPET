@@ -91,13 +91,10 @@ export default function CartPage() {
 
         <aside className="h-fit bg-white border border-slate-200 rounded-2xl p-6">
           <h2 className="text-lg font-bold text-slate-900 mb-4">Order Summary</h2>
-          <div className="flex justify-between text-slate-600 mb-2">
+          <div className="flex justify-between text-slate-600 mb-6">
             <span>Subtotal</span>
             <span className="font-semibold text-slate-900">{formatPrice(totalPrice)}</span>
           </div>
-          <p className="text-xs text-slate-500 mb-6">
-            No payment is taken online. We&apos;ll email you an invoice after you place the order.
-          </p>
           <Link
             href="/checkout"
             className="block text-center w-full bg-[#00C853] text-slate-900 font-semibold px-6 py-3 rounded-full hover:bg-[#00b34a] transition"

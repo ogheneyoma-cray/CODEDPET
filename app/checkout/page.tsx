@@ -4,7 +4,6 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { FileText } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import { useCurrency } from "@/context/CurrencyContext";
 
@@ -103,7 +102,7 @@ export default function CheckoutPage() {
     <main className="max-w-6xl mx-auto px-4 pt-28 pb-16">
       <div className="mb-10">
         <h1 className="text-4xl font-bold text-slate-900 mb-2">Checkout</h1>
-        <p className="text-slate-600">Enter your details and we&apos;ll email you an invoice to confirm your order.</p>
+        <p className="text-slate-600">Enter your details below to complete your order.</p>
       </div>
 
       <form onSubmit={handleSubmit} className="grid lg:grid-cols-3 gap-10">
@@ -161,14 +160,6 @@ export default function CheckoutPage() {
             <div className="mt-6 pt-6 border-t border-slate-200 flex justify-between text-lg font-bold text-slate-900">
               <span>Total</span>
               <span>{formatPrice(totalPrice)}</span>
-            </div>
-
-            <div className="mt-4 flex gap-2 rounded-lg bg-slate-50 p-3 text-xs text-slate-600">
-              <FileText className="w-4 h-4 shrink-0 text-[#00a344]" aria-hidden />
-              <p>
-                No card details needed. After you place the order we&apos;ll email an invoice with payment
-                instructions. Work starts once payment is confirmed.
-              </p>
             </div>
 
             {error && (
