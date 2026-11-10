@@ -118,8 +118,7 @@ export default function CheckoutPage() {
           </section>
 
           <section className="bg-white border border-slate-200 rounded-2xl p-6 md:p-8">
-            <h2 className="text-xl font-bold text-slate-900 mb-1">Billing address</h2>
-            <p className="text-sm text-slate-500 mb-6">Printed on your invoice. Leave blank if you don&apos;t need it.</p>
+            <h2 className="text-xl font-bold text-slate-900 mb-6">Billing address</h2>
             <div className="grid sm:grid-cols-2 gap-5">
               {text("address", "Street address", { autoComplete: "street-address", wide: true })}
               {text("city", "City", { autoComplete: "address-level2" })}

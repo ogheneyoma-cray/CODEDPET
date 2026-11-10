@@ -13,7 +13,7 @@ const STATUS = {
   awaiting_payment: {
     icon: Clock,
     title: "Order received",
-    body: "We'll email you an invoice with payment instructions within one business day. Work starts once payment is confirmed.",
+    body: "Thank you, we've received your order and will be in touch shortly.",
     tone: "text-amber-600",
   },
   paid: {
