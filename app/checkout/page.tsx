@@ -137,7 +137,7 @@ export default function CheckoutPage() {
             <h2 className="text-xl font-bold text-slate-900 mb-6">Payment method</h2>
             <label className="flex items-center gap-3 rounded-lg border-2 border-[#00C853] bg-[#00C853]/5 p-4 cursor-pointer">
               <input type="radio" name="paymentMethod" value="cray" defaultChecked className="accent-[#00C853] w-4 h-4" />
-              <span className="font-semibold text-slate-900">Cray</span>
+              <span className="font-semibold text-slate-900">Pay with credit/debit card</span>
             </label>
           </section>
         </div>
