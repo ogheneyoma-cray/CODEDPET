@@ -1,10 +1,9 @@
 "use client";
 
-import { createContext, useContext, useState, ReactNode } from "react";
+import { createContext, useContext, useEffect, useState, ReactNode } from "react";
+import { convert, formatMoney, type Currency } from "@/lib/pricing";
 
-export type Currency = "USD" | "NGN";
-
-const USD_TO_NGN = 1650;
+export type { Currency };
 
 type CurrencyContextType = {
   currency: Currency;
@@ -12,24 +11,28 @@ type CurrencyContextType = {
   formatPrice: (usdPrice: number) => string;
 };
 
+const STORAGE_KEY = "codedpet_currency";
 const CurrencyContext = createContext<CurrencyContextType | undefined>(undefined);
 
 export function CurrencyProvider({ children }: { children: ReactNode }) {
-  const [currency, setCurrency] = useState<Currency>("USD");
+  const [currency, setCurrencyState] = useState<Currency>("USD");
 
-  const formatPrice = (usdPrice: number): string => {
-    if (currency === "NGN") {
-      return new Intl.NumberFormat("en-NG", {
-        style: "currency",
-        currency: "NGN",
-        maximumFractionDigits: 0,
-      }).format(usdPrice * USD_TO_NGN);
-    }
-    return new Intl.NumberFormat("en-US", {
-      style: "currency",
-      currency: "USD",
-    }).format(usdPrice);
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- restore the saved choice after mount
+      if (saved === "USD" || saved === "NGN") setCurrencyState(saved);
+    } catch {}
+  }, []);
+
+  const setCurrency = (c: Currency) => {
+    setCurrencyState(c);
+    try {
+      localStorage.setItem(STORAGE_KEY, c);
+    } catch {}
   };
+
+  const formatPrice = (usdPrice: number) => formatMoney(convert(usdPrice, currency), currency);
 
   return (
     <CurrencyContext.Provider value={{ currency, setCurrency, formatPrice }}>
