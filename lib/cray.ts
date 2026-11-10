@@ -3,9 +3,6 @@ import "server-only";
 // Cray hosted checkout client (see cray-and-shared-postgres.md, section 4).
 // Env: CRAY_BASE_URL, CRAY_SECRET_KEY (shared) and CRAY_SUBACCOUNT_TOKEN (this site's own).
 
-/** Thrown when card payments can't be started; the message is safe to show customers. */
-export class PaymentUnavailableError extends Error {}
-
 export class CrayError extends Error {
   constructor(message: string, readonly httpStatus: number) {
     super(message);
@@ -15,15 +12,8 @@ export class CrayError extends Error {
 function config() {
   const secretKey = process.env.CRAY_SECRET_KEY;
   const baseUrl = process.env.CRAY_BASE_URL?.replace(/\/+$/, "");
-  if (!secretKey || !baseUrl) throw new PaymentUnavailableError("CRAY_SECRET_KEY / CRAY_BASE_URL missing");
+  if (!secretKey || !baseUrl) throw new Error("Payments are not configured (CRAY_SECRET_KEY / CRAY_BASE_URL missing)");
   return { secretKey, baseUrl };
-}
-
-/** Never guess a sub-account: without this site's own token, payments would settle elsewhere. */
-function subaccountToken(): string {
-  const token = process.env.CRAY_SUBACCOUNT_TOKEN;
-  if (!token) throw new PaymentUnavailableError("CRAY_SUBACCOUNT_TOKEN is not set");
-  return token;
 }
 
 async function cray<T>(path: string, init: RequestInit = {}): Promise<T> {
@@ -59,7 +49,8 @@ export function initializeCrayCheckout(params: {
   customer: { name: string; email: string };
   metadata: Record<string, string>;
 }) {
-  const token = subaccountToken();
+  // This site's own sub-account token. Never copy another site's: payments would settle there.
+  const token = process.env.CRAY_SUBACCOUNT_TOKEN || undefined;
   return cray<{ link: string; reference: string }>("/api/checkout/initialize", {
     method: "POST",
     body: JSON.stringify({

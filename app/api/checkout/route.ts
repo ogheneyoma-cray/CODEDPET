@@ -7,8 +7,6 @@ import { site } from "@/lib/site";
 
 export const dynamic = "force-dynamic";
 
-const PAYMENT_UNAVAILABLE = "Card payment isn't available right now. Please try again later or contact us.";
-
 export async function POST(req: Request) {
   if (!rateLimit(`checkout:${clientIp(req)}`, 10)) {
     return NextResponse.json({ error: "Too many attempts from this connection. Please try again later." }, { status: 429 });
@@ -49,6 +47,6 @@ export async function POST(req: Request) {
     const reason = err instanceof Error ? err.message : String(err);
     console.error(`[checkout] Cray initialize failed for ${order.reference}: ${reason}`);
     await markInitFailed(order.reference, `Checkout initialize failed: ${reason}`).catch(() => {});
-    return NextResponse.json({ error: PAYMENT_UNAVAILABLE }, { status: 503 });
+    return NextResponse.json({ error: reason }, { status: 502 });
   }
 }

@@ -132,6 +132,14 @@ export default function CheckoutPage() {
             <p className="text-sm text-slate-500 mb-4">Goals, deadlines, links to an existing site: anything that helps us start.</p>
             <textarea id="notes" name="notes" rows={4} maxLength={2000} className={inputClass} value={form.notes} onChange={update("notes")} />
           </section>
+
+          <section className="bg-white border border-slate-200 rounded-2xl p-6 md:p-8">
+            <h2 className="text-xl font-bold text-slate-900 mb-6">Payment method</h2>
+            <label className="flex items-center gap-3 rounded-lg border-2 border-[#00C853] bg-[#00C853]/5 p-4 cursor-pointer">
+              <input type="radio" name="paymentMethod" value="cray" defaultChecked className="accent-[#00C853] w-4 h-4" />
+              <span className="font-semibold text-slate-900">Cray</span>
+            </label>
+          </section>
         </div>
 
         <div className="lg:col-span-1">
