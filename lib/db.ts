@@ -23,7 +23,7 @@ export async function db(): Promise<Sql> {
       CREATE TABLE IF NOT EXISTS orders (
         reference       text PRIMARY KEY,
         status          text NOT NULL DEFAULT 'awaiting_payment'
-                        CHECK (status IN ('awaiting_payment', 'paid', 'cancelled')),
+                        CHECK (status IN ('awaiting_payment', 'paid', 'failed', 'review', 'cancelled')),
         currency        text NOT NULL,
         total           numeric(14,2) NOT NULL,
         usd_total       numeric(14,2) NOT NULL,
@@ -35,6 +35,12 @@ export async function db(): Promise<Sql> {
         company_name    text,
         billing_address jsonb,
         notes           text,
+        payment_method  text NOT NULL DEFAULT 'cray',
+        checkout_link   text,
+        cray_status     text,
+        provider_reference text,
+        payment_channel text,
+        status_note     text,
         paid_at         timestamptz,
         cancelled_at    timestamptz,
         created_at      timestamptz NOT NULL DEFAULT now(),

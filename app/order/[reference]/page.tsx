@@ -12,9 +12,21 @@ export const metadata: Metadata = { title: "Your order | Codedpet", robots: { in
 const STATUS = {
   awaiting_payment: {
     icon: Clock,
-    title: "Order received",
-    body: "Thank you, we've received your order and will be in touch shortly.",
+    title: "Awaiting payment",
+    body: "We haven't received payment for this order yet.",
     tone: "text-amber-600",
+  },
+  review: {
+    icon: Clock,
+    title: "Confirming your payment",
+    body: "We're confirming your payment and will be in touch shortly.",
+    tone: "text-amber-600",
+  },
+  failed: {
+    icon: XCircle,
+    title: "Payment not completed",
+    body: "Payment for this order didn't go through. You can try again from your cart.",
+    tone: "text-red-600",
   },
   paid: {
     icon: CheckCircle2,

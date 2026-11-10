@@ -4,7 +4,7 @@ import { cookies } from "next/headers";
 import { revalidatePath } from "next/cache";
 import { ADMIN_COOKIE, createSessionValue, isAdmin, passwordMatches, sessionCookieOptions } from "@/lib/admin-auth";
 import { setOrderStatus } from "@/lib/orders";
-import { sendPaymentReceivedEmail } from "@/lib/email";
+import { sendOrderPaidEmails } from "@/lib/email";
 
 export async function login(_prev: string | null, formData: FormData): Promise<string | null> {
   const password = String(formData.get("password") ?? "");
@@ -25,7 +25,7 @@ export async function logout() {
 export async function markPaid(formData: FormData) {
   if (!(await isAdmin())) return;
   const order = await setOrderStatus(String(formData.get("reference")), "paid");
-  if (order) await sendPaymentReceivedEmail(order);
+  if (order) await sendOrderPaidEmails(order);
   revalidatePath("/admin");
 }
 

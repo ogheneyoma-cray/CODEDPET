@@ -43,15 +43,16 @@ const lines = (o: Order) =>
 
 const orderUrl = (ref: string) => `${site.url}/order/${ref}`;
 
-export async function sendOrderPlacedEmails(o: Order) {
+/** Sent once, when an order becomes paid (Cray callback or "Mark as paid" in /admin). */
+export async function sendOrderPaidEmails(o: Order) {
   await sendMail({
     to: o.customerEmail,
-    subject: `Your ${site.name} order ${o.reference}`,
+    subject: `Payment received for order ${o.reference}`,
     replyTo: site.email,
     text: [
       `Hi ${o.customerName},`,
       "",
-      "Thanks for your order. We'll email you an invoice with payment details within one business day. Work starts once payment is confirmed.",
+      "Thank you, we've received your payment. We'll be in touch shortly to agree the details and timeline.",
       "",
       lines(o),
       "",
@@ -62,7 +63,7 @@ export async function sendOrderPlacedEmails(o: Order) {
   });
   await sendMail({
     to: site.email,
-    subject: `New order ${o.reference}: ${formatMoney(o.total, o.currency)}`,
+    subject: `New paid order ${o.reference}: ${formatMoney(o.total, o.currency)}`,
     replyTo: o.customerEmail,
     text: [
       `Customer: ${o.customerName} <${o.customerEmail}>`,
@@ -73,26 +74,7 @@ export async function sendOrderPlacedEmails(o: Order) {
       "",
       `Notes: ${o.notes ?? "-"}`,
       "",
-      `Send the invoice, then mark it paid at ${site.url}/admin`,
-    ].join("\n"),
-  });
-}
-
-export async function sendPaymentReceivedEmail(o: Order) {
-  await sendMail({
-    to: o.customerEmail,
-    subject: `Payment received for order ${o.reference}`,
-    replyTo: site.email,
-    text: [
-      `Hi ${o.customerName},`,
-      "",
-      "We've received your payment and work on your order is starting. We'll be in touch shortly to agree the details and timeline.",
-      "",
-      lines(o),
-      "",
-      `View your order: ${orderUrl(o.reference)}`,
-      "",
-      site.name,
+      `Orders: ${site.url}/admin`,
     ].join("\n"),
   });
 }

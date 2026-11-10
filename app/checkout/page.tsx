@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { useCart } from "@/context/CartContext";
@@ -26,9 +25,8 @@ const empty = {
 type Field = keyof typeof empty;
 
 export default function CheckoutPage() {
-  const { cart, ready, totalPrice, clearCart } = useCart();
+  const { cart, ready, totalPrice } = useCart();
   const { currency, formatPrice } = useCurrency();
-  const router = useRouter();
 
   const [form, setForm] = useState(empty);
   const [submitting, setSubmitting] = useState(false);
@@ -52,9 +50,9 @@ export default function CheckoutPage() {
         }),
       });
       const data = await res.json().catch(() => ({}));
-      if (!res.ok || !data.reference) throw new Error(data.error || "We couldn't place your order. Please try again.");
-      clearCart();
-      router.push(`/order/${data.reference}?placed=1`);
+      if (!res.ok || !data.link) throw new Error(data.error || "We couldn't start your payment. Please try again.");
+      // The cart is cleared on the callback page once Cray confirms the payment.
+      window.location.href = data.link;
     } catch (err) {
       setError(err instanceof Error ? err.message : "We couldn't place your order. Please try again.");
       setSubmitting(false);
@@ -172,10 +170,10 @@ export default function CheckoutPage() {
               disabled={submitting}
               className="mt-6 w-full bg-[#00C853] text-slate-900 font-semibold px-6 py-3 rounded-full hover:bg-[#00b34a] transition disabled:opacity-60 disabled:cursor-not-allowed"
             >
-              {submitting ? "Placing order…" : "Place order"}
+              {submitting ? "Redirecting to payment…" : `Pay ${formatPrice(totalPrice)}`}
             </button>
             <p className="mt-3 text-xs text-slate-500 text-center">
-              By placing an order you agree to our <Link href="/terms" className="underline">terms</Link> and{" "}
+              By paying you agree to our <Link href="/terms" className="underline">terms</Link> and{" "}
               <Link href="/refund" className="underline">refund policy</Link>.
             </p>
 

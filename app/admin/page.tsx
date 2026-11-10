@@ -12,11 +12,15 @@ export const metadata: Metadata = { title: "Orders | Codedpet admin", robots: { 
 const LABEL: Record<OrderStatus, string> = {
   awaiting_payment: "Awaiting payment",
   paid: "Paid",
+  failed: "Failed",
+  review: "Needs review",
   cancelled: "Cancelled",
 };
 const BADGE: Record<OrderStatus, string> = {
   awaiting_payment: "bg-amber-100 text-amber-800",
   paid: "bg-green-100 text-green-800",
+  failed: "bg-red-100 text-red-800",
+  review: "bg-orange-100 text-orange-800",
   cancelled: "bg-slate-200 text-slate-700",
 };
 
@@ -55,7 +59,7 @@ export default async function AdminPage({ searchParams }: { searchParams: Promis
           href="/admin"
           className={`px-3 py-1.5 rounded-full border ${!status ? "bg-slate-900 text-white border-slate-900" : "border-slate-300 text-slate-700"}`}
         >
-          All ({counts.awaiting_payment + counts.paid + counts.cancelled})
+          All ({Object.values(counts).reduce((a, b) => a + b, 0)})
         </Link>
         {ORDER_STATUSES.map((s) => (
           <Link
@@ -136,6 +140,8 @@ export default async function AdminPage({ searchParams }: { searchParams: Promis
                       <span className={`inline-block px-2 py-0.5 rounded-full text-xs font-medium ${BADGE[o.status]}`}>
                         {LABEL[o.status]}
                       </span>
+                      {o.paymentChannel && <div className="text-xs text-slate-500 mt-1">via {o.paymentChannel}</div>}
+                      {o.statusNote && <div className="text-xs text-slate-500 mt-1 max-w-[16rem] break-words">{o.statusNote}</div>}
                       {o.paidAt && (
                         <div className="text-xs text-slate-500 mt-1">
                           {o.paidAt.toLocaleString("en-GB", { dateStyle: "short", timeStyle: "short", timeZone: "Africa/Lagos" })}
@@ -143,7 +149,7 @@ export default async function AdminPage({ searchParams }: { searchParams: Promis
                       )}
                     </td>
                     <td className="p-3">
-                      {o.status === "awaiting_payment" && (
+                      {["awaiting_payment", "failed", "review"].includes(o.status) && (
                         <div className="flex flex-col gap-2">
                           <form action={markPaid}>
                             <input type="hidden" name="reference" value={o.reference} />

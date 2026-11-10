@@ -4,10 +4,11 @@ import { db } from "./db";
 import { products } from "./products";
 import { convert, USD_TO_NGN, type Currency } from "./pricing";
 import { site } from "./site";
+import { CrayError, mapCrayStatus, queryCrayPayment } from "./cray";
 import type { CheckoutInput } from "./validation";
 
-export type OrderStatus = "awaiting_payment" | "paid" | "cancelled";
-export const ORDER_STATUSES: OrderStatus[] = ["awaiting_payment", "paid", "cancelled"];
+export type OrderStatus = "awaiting_payment" | "paid" | "failed" | "review" | "cancelled";
+export const ORDER_STATUSES: OrderStatus[] = ["awaiting_payment", "paid", "failed", "review", "cancelled"];
 
 export type OrderItem = {
   id: string;
@@ -31,6 +32,8 @@ export type Order = {
   companyName: string | null;
   billingAddress: { address?: string; city?: string; state?: string; country?: string } | null;
   notes: string | null;
+  paymentChannel: string | null;
+  statusNote: string | null;
   paidAt: Date | null;
   createdAt: Date;
 };
@@ -84,6 +87,8 @@ function toOrder(r: Row): Order {
     companyName: (r.company_name as string) ?? null,
     billingAddress: (r.billing_address as Order["billingAddress"]) ?? null,
     notes: (r.notes as string) ?? null,
+    paymentChannel: (r.payment_channel as string) ?? null,
+    statusNote: (r.status_note as string) ?? null,
     paidAt: (r.paid_at as Date) ?? null,
     createdAt: r.created_at as Date,
   };
@@ -138,19 +143,68 @@ export async function listOrders(opts: { status?: string; q?: string; limit?: nu
 export async function orderCounts(): Promise<Record<OrderStatus, number>> {
   const sql = await db();
   const rows = await sql`SELECT status, count(*)::int AS n FROM orders GROUP BY status`;
-  const counts = { awaiting_payment: 0, paid: 0, cancelled: 0 };
+  const counts = { awaiting_payment: 0, paid: 0, failed: 0, review: 0, cancelled: 0 };
   for (const r of rows) counts[r.status as OrderStatus] = r.n as number;
   return counts;
 }
 
-/** Moves an awaiting order to paid or cancelled. Returns the order only if it changed. */
+/** Admin action: moves an open order to paid or cancelled. Returns the order only if it changed. */
 export async function setOrderStatus(reference: string, to: "paid" | "cancelled"): Promise<Order | null> {
   const sql = await db();
   const [row] = await sql`
     UPDATE orders SET status = ${to}, updated_at = now(),
       paid_at = CASE WHEN ${to} = 'paid' THEN now() ELSE paid_at END,
       cancelled_at = CASE WHEN ${to} = 'cancelled' THEN now() ELSE cancelled_at END
-    WHERE reference = ${reference} AND status = 'awaiting_payment'
+    WHERE reference = ${reference} AND status IN ('awaiting_payment', 'failed', 'review')
     RETURNING *`;
   return row ? toOrder(row) : null;
+}
+
+export async function setCheckoutLink(reference: string, link: string) {
+  const sql = await db();
+  await sql`UPDATE orders SET checkout_link = ${link}, updated_at = now() WHERE reference = ${reference}`;
+}
+
+export async function markInitFailed(reference: string, note: string) {
+  const sql = await db();
+  await sql`UPDATE orders SET status = 'failed', status_note = ${note.slice(0, 500)}, updated_at = now()
+    WHERE reference = ${reference} AND status = 'awaiting_payment'`;
+}
+
+/**
+ * Asks Cray for the payment status and updates the order. Never downgrades an order
+ * that is already paid, under review or cancelled. Returns the order and whether it
+ * just became paid (so the caller can send the confirmation emails once).
+ */
+export async function syncOrder(reference: string): Promise<{ order: Order | null; becamePaid: boolean }> {
+  const order = await getOrder(reference);
+  if (!order || ["paid", "review", "cancelled"].includes(order.status)) return { order, becamePaid: false };
+
+  let payment;
+  try {
+    payment = await queryCrayPayment(reference);
+  } catch (err) {
+    // 404: the customer never reached the payment page. Anything else: try again later.
+    if (!(err instanceof CrayError) || err.httpStatus !== 404) console.error(`[cray] query ${reference} failed:`, err);
+    return { order, becamePaid: false };
+  }
+
+  const mapped = mapCrayStatus(payment.status ?? "");
+  let next: OrderStatus = mapped === "paid" ? "paid" : mapped === "failed" ? "failed" : "awaiting_payment";
+  let note: string | null = null;
+  if (next === "paid" && payment.amount != null && Math.abs(Number(payment.amount) - order.total) > 0.01) {
+    next = "review";
+    note = `Cray reported ${payment.amount} ${payment.currency ?? ""}, order total is ${order.total} ${order.currency}`;
+  }
+
+  const sql = await db();
+  const [row] = await sql`
+    UPDATE orders SET status = ${next}, cray_status = ${payment.status ?? null},
+      provider_reference = ${payment.provider_reference ?? null}, payment_channel = ${payment.payment_channel ?? null},
+      status_note = COALESCE(${note}, status_note),
+      paid_at = CASE WHEN ${next} = 'paid' THEN now() ELSE paid_at END, updated_at = now()
+    WHERE reference = ${reference} AND status IN ('awaiting_payment', 'failed')
+    RETURNING *`;
+  if (!row) return { order: await getOrder(reference), becamePaid: false };
+  return { order: toOrder(row), becamePaid: next === "paid" };
 }
