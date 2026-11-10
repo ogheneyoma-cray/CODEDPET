@@ -5,7 +5,7 @@ export default function Footer() {
     <footer className="py-8 px-8 border-t border-white/10 mt-12 bg-slate-900/20">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
         <div className="text-sm text-slate-400">
-          &copy; {new Date().getFullYear()} Codedpet. All rights reserved.
+          &copy; {new Date().getFullYear()} Codedpet. All rights reserved. RC - 9526441
         </div>
         <div className="flex flex-wrap justify-center gap-x-6 gap-y-2">
           <Link href="/privacy" className="text-sm text-slate-400 hover:text-[#00C853] transition-colors">Privacy Policy</Link>
